@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <style type="text/css">
+    ul{
+      width: 504px;
+      margin:50px auto 0;
+      border:1px solid #ccc;
+      padding:10px 10px 0;
+      overflow: hidden;
+    }
+    li{
+      height: 40px;
+      width: 502px;
+      background: #ccc;
+      margin:0 1px 10px;
+      list-style: none;
+      float: left;
+      color:#fff;
+      text-align: center;
+      line-height: 40px;
+      cursor: pointer;
+    }
+    li.half{
+      width: 250px;
+      background: #ddd;
+    }
+    li:hover{
+      transition:all 0.3s;
+      background: #999;
+    }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li data-num='5'>5</li>
+    <li data-num='5'>5</li>
+    <li data-num='5'>5</li>
+    <li data-num='5'>5</li>
+    <li data-num='5'>5</li>
+    <li data-num='8'>8</li>
+    <li data-num='5'>5</li>
+    <li data-num='8'>8</li>
+    <li data-num='5'>5</li>
+    <li data-num='8'>8</li>
+    <li data-num='5'>5</li>
+    <li data-num='5'>5</li>
+    <li data-num='5'>5</li>
+    <li data-num='5'>5</li>
+    <li data-num='5'>5</li>
+    <li data-num='8'>8</li>
+    <li data-num='5'>5</li>
+    <li data-num='5'>5</li>
+    <li data-num='5'>5</li>
+    <li data-num='8'>8</li>
+    <li data-num='5'>5</li>
+    <li data-num='5'>5</li>
+    <li data-num='5'>5</li>
+  </ul>
+</body>
+<script type="text/javascript">
+  (function shiftAddClass(arr){
+    if(arr.length<=1) return false;
+    var first = arr[0].getAttribute('data-num'),second = arr[1].getAttribute('data-num');
+    if(first>6) arr.shift(); 
+    if(first<6&&second>6) {arr.shift();arr.shift();}
+    if(first<6&&second<6) {arr.shift().className = 'half';arr.shift().className = 'half';} 
+    shiftAddClass(arr);
+  })(Array.prototype.slice.call(document.getElementsByTagName('li')));
+
+  //Array.prototype.slice.call 能把li转为数组 然后才能使用shift方法 
+
+  /*(function shiftAddClass(arr){
+    //长度小于等于1时 不用递归
+    if(arr.length<=1){return false;}
+    //获取当前arr第一个和第二个的data-num 能到这一步arr长度至少为2
+    var first = arr[0].getAttribute('data-num'),second = arr[1].getAttribute('data-num');
+    //若第一个大于6 占一行 弹出
+    if(first>6){ arr.shift(); }
+    //第一个小于6 第二个也小于6 都弹出且添加className
+    if(first<6&&second<6){ arr.shift().className = 'half';arr.shift().className = 'half'; }
+    //第一个小于6 第二个大于6 每一个都会占一行 把这两个都弹出
+    if(first<6&&second>6){ arr.shift();arr.shift(); }
+    //arr长度小于等于1时 不递归
+    arr.length>1&&shiftAddClass(arr);
+  }(list));*/
+
+</script>
+
+</html>
